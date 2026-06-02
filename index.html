@@ -109,14 +109,14 @@
 
     <!-- Header Navigation Bar (No Print) -->
     <header class="bg-slate-900 text-white shadow-md no-print py-4 px-6 mb-6">
-        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div class="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-3">
                 <div class="bg-white p-1 rounded-full w-8 h-8 flex items-center justify-center">
                     <span class="text-slate-900 font-extrabold text-xs">JS</span>
                 </div>
                 <div>
                     <h1 class="font-bold text-xs leading-tight">JS. Electric Air & Service</h1>
-                    <p class="text-[11px] text-slate-400">ระบบสร้างและบันทึกประวัติเอกสารย้อนหลัง (A4, TH-Sarabun 10px / 12px)</p>
+                    <p class="text-[11px] text-slate-400">ระบบสร้างใบเสนอราคา / ใบแจ้งหนี้แบบโต้ตอบ (A4, TH-Sarabun 10px / 12px)</p>
                 </div>
             </div>
             
@@ -131,99 +131,62 @@
                     </button>
                 </div>
 
-                <!-- Save Document Button -->
-                <button onclick="saveCurrentDocument()" class="bg-amber-500 hover:bg-amber-600 text-white font-semibold px-3.5 py-1.5 rounded shadow text-xs transition flex items-center gap-1.5">
-                    <i class="fa-solid fa-cloud-arrow-up"></i> บันทึกประวัติเอกสาร
-                </button>
-
                 <!-- Print / Save PDF Button -->
                 <button onclick="window.print()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-1.5 rounded shadow text-xs transition flex items-center gap-1.5">
-                    <i class="fa-solid fa-print"></i> พิมพ์ / PDF
+                    <i class="fa-solid fa-print"></i> พิมพ์ / บันทึกเป็น PDF
                 </button>
             </div>
         </div>
     </header>
 
     <!-- Main Content Container (No Print Controls) -->
-    <main class="max-w-6xl mx-auto px-4 no-print mb-6">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            
-            <!-- Left: Settings & Controls (7 Cols) -->
-            <div class="lg:col-span-8 space-y-6">
-                <!-- Controls Panel -->
-                <section class="bg-white rounded-xl shadow-sm p-4 border border-slate-200">
-                    <h2 class="text-xs font-bold text-slate-700 mb-3 flex items-center gap-1.5">
-                        <i class="fa-solid fa-sliders text-slate-500"></i> แผงการตั้งค่าเอกสาร
-                    </h2>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <!-- Tax Option Toggle -->
-                        <div class="space-y-1">
-                            <label class="block text-[10px] font-bold text-slate-500 uppercase">การคิดภาษีมูลค่าเพิ่ม (VAT 7%)</label>
-                            <div class="flex gap-2">
-                                <button id="vat-add" onclick="setVatMode('add')" class="flex-1 py-1 px-2 border rounded text-[11px] font-semibold text-center transition bg-blue-50 border-blue-500 text-blue-700">
-                                    บวกเพิ่ม 7% (Exclude VAT)
-                                </button>
-                                <button id="vat-none" onclick="setVatMode('none')" class="flex-1 py-1 px-2 border rounded text-[11px] font-semibold text-center transition bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100">
-                                    ไม่มี VAT
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Signature & Stamp Toggle Helpers -->
-                        <div class="space-y-1">
-                            <label class="block text-[10px] font-bold text-slate-500 uppercase">ตราปั๊มและลายเซ็นผู้เสนอราคา</label>
-                            <div>
-                                <button id="toggle-stamp" onclick="toggleElement('stamp')" class="w-full py-1.5 px-2 border border-slate-200 rounded text-[11px] font-semibold text-slate-700 bg-white hover:bg-slate-50 transition flex items-center justify-center gap-1.5">
-                                    <i class="fa-solid fa-stamp text-blue-600"></i> <span id="stamp-status-txt">ซ่อนตราปั๊มและลายเซ็น</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Color Theme Selector -->
-                        <div class="space-y-1">
-                            <label class="block text-[10px] font-bold text-slate-500 uppercase">ชุดโทนสีเอกสาร</label>
-                            <div class="flex gap-3 pt-0.5">
-                                <button onclick="changeTheme('slate')" class="w-6 h-6 rounded-full bg-slate-800 border-2 border-white ring-2 ring-slate-800 shadow" title="เทาสุภาพ"></button>
-                                <button onclick="changeTheme('blue')" class="w-6 h-6 rounded-full bg-blue-900 border-2 border-white ring-2 ring-transparent shadow" title="น้ำเงินนิวี"></button>
-                                <button onclick="changeTheme('teal')" class="w-6 h-6 rounded-full bg-teal-800 border-2 border-white ring-2 ring-transparent shadow" title="เขียวสุขุม"></button>
-                            </div>
-                        </div>
+    <main class="max-w-5xl mx-auto px-4 no-print mb-6">
+        <!-- Controls Panel -->
+        <section class="bg-white rounded-xl shadow-sm p-4 border border-slate-200">
+            <h2 class="text-xs font-bold text-slate-700 mb-3 flex items-center gap-1.5">
+                <i class="fa-solid fa-sliders text-slate-500"></i> แผงการตั้งค่าเอกสาร
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Tax Option Toggle -->
+                <div class="space-y-1">
+                    <label class="block text-[10px] font-bold text-slate-500 uppercase">การคิดภาษีมูลค่าเพิ่ม (VAT 7%)</label>
+                    <div class="flex gap-2">
+                        <button id="vat-add" onclick="setVatMode('add')" class="flex-1 py-1 px-2 border rounded text-[11px] font-semibold text-center transition bg-blue-50 border-blue-500 text-blue-700">
+                            บวกเพิ่ม 7% (Exclude VAT)
+                        </button>
+                        <button id="vat-none" onclick="setVatMode('none')" class="flex-1 py-1 px-2 border rounded text-[11px] font-semibold text-center transition bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100">
+                            ไม่มี VAT
+                        </button>
                     </div>
-                    
-                    <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
-                        <span><i class="fa-solid fa-info-circle text-blue-500 mr-1"></i> สามารถคลิกพิมพ์แก้ไขรายละเอียดทั้งหมดในแบบฟอร์มด้านล่างนี้ได้โดยตรง</span>
-                        <span class="font-bold text-emerald-600"><i class="fa-solid fa-check-double mr-1"></i> คำนวณสูตรภาษีและยอดเงินให้อัตโนมัติทุกครั้งเมื่อตัวเลขเปลี่ยน</span>
-                    </div>
-                </section>
-            </div>
+                </div>
 
-            <!-- Right: Document History Last 2 Months (4 Cols) -->
-            <div class="lg:col-span-4">
-                <section class="bg-white rounded-xl shadow-sm p-4 border border-slate-200 h-full flex flex-col justify-between">
+                <!-- Signature & Stamp Toggle Helpers -->
+                <div class="space-y-1">
+                    <label class="block text-[10px] font-bold text-slate-500 uppercase">ตราปั๊มและลายเซ็นผู้เสนอราคา</label>
                     <div>
-                        <h2 class="text-xs font-bold text-slate-700 mb-2 flex items-center justify-between">
-                            <span class="flex items-center gap-1.5">
-                                <i class="fa-solid fa-clock-rotate-left text-amber-500"></i> ประวัติเอกสาร (ย้อนหลัง 2 เดือน)
-                            </span>
-                            <span id="history-count" class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full text-[9px] font-bold">0 ฉบับ</span>
-                        </h2>
-                        <p class="text-[9px] text-slate-400 mb-3">แสดงเอกสารล่าสุดที่มีอายุไม่เกิน 60 วัน สามารถคลิกเพื่อดึงข้อมูลกลับมาแก้ไขได้</p>
-                        
-                        <!-- History List Container -->
-                        <div id="history-list" class="space-y-2 max-h-[110px] overflow-y-auto pr-1">
-                            <div class="text-center py-4 text-slate-400 text-xs">
-                                <i class="fa-solid fa-folder-open text-slate-300 text-xl block mb-1"></i> ไม่มีประวัติเอกสารที่บันทึกไว้
-                            </div>
-                        </div>
+                        <button id="toggle-stamp" onclick="toggleElement('stamp')" class="w-full py-1.5 px-2 border border-slate-200 rounded text-[11px] font-semibold text-slate-700 bg-white hover:bg-slate-50 transition flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-stamp text-blue-600"></i> <span id="stamp-status-txt">ซ่อนตราปั๊มและลายเซ็น</span>
+                        </button>
                     </div>
-                </section>
+                </div>
+
+                <!-- Color Theme Selector -->
+                <div class="space-y-1">
+                    <label class="block text-[10px] font-bold text-slate-500 uppercase">ชุดโทนสีเอกสาร</label>
+                    <div class="flex gap-3 pt-0.5">
+                        <button onclick="changeTheme('slate')" class="w-6 h-6 rounded-full bg-slate-800 border-2 border-white ring-2 ring-slate-800 shadow" title="เทาสุภาพ"></button>
+                        <button onclick="changeTheme('blue')" class="w-6 h-6 rounded-full bg-blue-900 border-2 border-white ring-2 ring-transparent shadow" title="น้ำเงินนิวี"></button>
+                        <button onclick="changeTheme('teal')" class="w-6 h-6 rounded-full bg-teal-800 border-2 border-white ring-2 ring-transparent shadow" title="เขียวสุขุม"></button>
+                    </div>
+                </div>
             </div>
-
-        </div>
+            
+            <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+                <span><i class="fa-solid fa-info-circle text-blue-500 mr-1"></i> สามารถคลิกพิมพ์แก้ไขรายละเอียดทั้งหมดในแบบฟอร์มด้านล่างนี้ได้โดยตรง</span>
+                <span class="font-bold text-emerald-600"><i class="fa-solid fa-check-double mr-1"></i> คำนวณสูตรภาษีและยอดเงินให้อัตโนมัติทุกครั้งเมื่อตัวเลขเปลี่ยน</span>
+            </div>
+        </section>
     </main>
-
-    <!-- Custom Floating Toast Notifications System -->
-    <div id="toast-container" class="fixed bottom-5 right-5 z-50 space-y-2 no-print"></div>
 
     <!-- Document Sheet (A4 Container) -->
     <div class="a4-container" id="printable-area">
@@ -413,340 +376,6 @@
         </div>
     </div>
 
-    <!-- Firebase SDK Imports -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInWithCustomToken, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc, getDoc, collection, getDocs, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // Global application variables
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'js-electric-app';
-        let db = null;
-        let auth = null;
-        let user = null;
-        let firebaseReady = false;
-
-        // Fallback Local Storage Simulation Array (If Firestore configuration isn't accessible)
-        let localBackupDatabase = [];
-
-        // Initialize Firebase
-        async function initFirebase() {
-            if (typeof __firebase_config !== 'undefined' && __firebase_config) {
-                try {
-                    const firebaseConfig = JSON.parse(__firebase_config);
-                    const app = initializeApp(firebaseConfig);
-                    auth = getAuth(app);
-                    db = getFirestore(app);
-
-                    // Authentication first (Rule 3)
-                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                        await signInWithCustomToken(auth, __initial_auth_token);
-                    } else {
-                        await signInAnonymously(auth);
-                    }
-
-                    onAuthStateChanged(auth, (usr) => {
-                        user = usr;
-                        if (user) {
-                            firebaseReady = true;
-                            loadHistory();
-                        }
-                    });
-                } catch (e) {
-                    console.warn("Firebase config parsed but init failed. Using fallback system.", e);
-                    useLocalFallback();
-                }
-            } else {
-                console.log("No Firebase configuration supplied. Using safe local session database.");
-                useLocalFallback();
-            }
-        }
-
-        function useLocalFallback() {
-            // Load from safe session fallback
-            const cached = sessionStorage.getItem('js_docs_backup');
-            if (cached) {
-                localBackupDatabase = JSON.parse(cached);
-            }
-            firebaseReady = false;
-            loadHistory();
-        }
-
-        // Global accessors for external buttons
-        window.saveCurrentDocument = async function() {
-            const docId = document.getElementById('doc-number').innerText.trim();
-            const clientName = document.getElementById('client-name').innerText.trim();
-            const dateStr = document.getElementById('doc-date').innerText.trim();
-            const totalStr = document.getElementById('grand-total-amount').innerText.trim();
-
-            if (!docId) {
-                showToast("กรุณากรอกเลขที่เอกสารก่อนทำการบันทึก", "error");
-                return;
-            }
-
-            // Extract table items
-            const itemRows = document.querySelectorAll('#invoice-items-body tr');
-            const items = [];
-            itemRows.forEach((row, i) => {
-                const cells = row.querySelectorAll('td');
-                if (cells.length >= 5) {
-                    items.push({
-                        desc: cells[1].innerText.trim(),
-                        qty: cells[2].innerText.trim(),
-                        price: cells[3].innerText.trim()
-                    });
-                }
-            });
-
-            // Pack document object
-            const docPayload = {
-                id: docId,
-                type: currentMode,
-                vatMode: vatMode,
-                theme: currentThemeColor,
-                companyName: document.getElementById('company-name').innerText.trim(),
-                companyAddress: document.getElementById('company-address').innerText.trim(),
-                companyContact: document.getElementById('company-contact').innerText.trim(),
-                companyTax: document.getElementById('company-tax').innerText.trim(),
-                docDate: dateStr,
-                docJob: document.getElementById('doc-job').innerText.trim(),
-                clientName: clientName,
-                clientAddress: document.getElementById('client-address').innerText.trim(),
-                clientTaxId: document.getElementById('client-tax-id').innerText.trim(),
-                grandTotal: totalStr,
-                items: items,
-                timestamp: Date.now() // Save time to filter 2-months window in JS (Rule 2)
-            };
-
-            showToast("กำลังบันทึกเอกสาร...", "info");
-
-            if (firebaseReady && user) {
-                // Rule 1 Strict Path
-                try {
-                    const docRef = doc(db, 'artifacts', appId, 'users', user.uid, 'documents', docId);
-                    await setDoc(docRef, docPayload);
-                    showToast("บันทึกประวัติลงระบบคลาวด์สำเร็จ!", "success");
-                    loadHistory();
-                } catch (error) {
-                    console.error("Firestore save failed:", error);
-                    saveToLocalFallback(docPayload);
-                }
-            } else {
-                saveToLocalFallback(docPayload);
-            }
-        };
-
-        function saveToLocalFallback(payload) {
-            // Check and update local cache
-            const index = localBackupDatabase.findIndex(d => d.id === payload.id);
-            if (index > -1) {
-                localBackupDatabase[index] = payload;
-            } else {
-                localBackupDatabase.push(payload);
-            }
-            sessionStorage.setItem('js_docs_backup', JSON.stringify(localBackupDatabase));
-            showToast("บันทึกประวัติสำเร็จ (โหมดออฟไลน์)!", "success");
-            loadHistory();
-        }
-
-        // Load History & Filter last 2 months (approx 60 days)
-        window.loadHistory = async function() {
-            let docsList = [];
-            const filterPeriod = 60 * 24 * 60 * 60 * 1000; // 2 Months in milliseconds
-            const now = Date.now();
-
-            if (firebaseReady && user) {
-                try {
-                    // Simple query (Rule 2)
-                    const q = collection(db, 'artifacts', appId, 'users', user.uid, 'documents');
-                    const snapshot = await getDocs(q);
-                    snapshot.forEach(docSnap => {
-                        docsList.push(docSnap.data());
-                    });
-                } catch (e) {
-                    console.error("Error reading Firestore history:", e);
-                    docsList = [...localBackupDatabase];
-                }
-            } else {
-                docsList = [...localBackupDatabase];
-            }
-
-            // Filter for last 2 months in JS Memory (Rule 2) and Sort
-            const filteredDocs = docsList.filter(d => (now - d.timestamp) <= filterPeriod);
-            filteredDocs.sort((a, b) => b.timestamp - a.timestamp);
-
-            renderHistoryList(filteredDocs);
-        };
-
-        // Render History UI list
-        function renderHistoryList(docs) {
-            const container = document.getElementById('history-list');
-            document.getElementById('history-count').innerText = `${docs.length} ฉบับ`;
-
-            if (docs.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center py-4 text-slate-400 text-xs">
-                        <i class="fa-solid fa-folder-open text-slate-300 text-lg block mb-1"></i> ไม่มีประวัติย้อนหลัง 2 เดือน
-                    </div>`;
-                return;
-            }
-
-            let html = '';
-            docs.forEach(doc => {
-                const dateText = new Date(doc.timestamp).toLocaleDateString('th-TH', {day: 'numeric', month: 'short'});
-                const badgeColor = doc.type === 'QUOTATION' ? 'bg-indigo-100 text-indigo-700' : 'bg-emerald-100 text-emerald-700';
-                const badgeLabel = doc.type === 'QUOTATION' ? 'QT' : 'INV';
-                
-                html += `
-                    <div class="bg-slate-50 border border-slate-100 rounded p-2 flex items-center justify-between gap-1 transition hover:bg-slate-100">
-                        <div class="space-y-0.5 min-w-0 flex-1">
-                            <div class="flex items-center gap-1.5">
-                                <span class="px-1 py-0.5 rounded text-[8px] font-bold ${badgeColor}">${badgeLabel}</span>
-                                <span class="font-semibold text-slate-800 truncate text-[10px]">${doc.id}</span>
-                            </div>
-                            <div class="text-slate-500 truncate text-[9px]">${doc.clientName}</div>
-                            <div class="text-[8px] text-slate-400">ออกเมื่อ: ${doc.docDate || dateText}</div>
-                        </div>
-                        <div class="text-right flex-shrink-0 pl-1 space-y-1">
-                            <div class="font-bold text-slate-900 text-[10px]">฿${doc.grandTotal}</div>
-                            <div class="flex gap-1 justify-end">
-                                <button onclick="loadDocumentToEdit('${encodeURIComponent(JSON.stringify(doc))}')" class="text-blue-600 hover:text-blue-800 text-[9px] font-bold bg-white border border-blue-200 px-1.5 py-0.5 rounded transition">
-                                    แก้ไข
-                                </button>
-                                <button onclick="deleteDocFromHistory('${doc.id}')" class="text-rose-500 hover:text-rose-700 text-[9px] p-0.5 rounded transition">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>`;
-            });
-            container.innerHTML = html;
-        }
-
-        // Load document back into the active template
-        window.loadDocumentToEdit = function(encodedDoc) {
-            try {
-                const docData = JSON.parse(decodeURIComponent(encodedDoc));
-                
-                // Set Theme & Mode
-                if (docData.type) switchMode(docData.type);
-                if (docData.vatMode) setVatMode(docData.vatMode);
-                if (docData.theme) changeTheme(docData.theme);
-
-                // Set Corporate details
-                document.getElementById('company-name').innerText = docData.companyName || '';
-                document.getElementById('company-address').innerText = docData.companyAddress || '';
-                document.getElementById('company-contact').innerText = docData.companyContact || '';
-                document.getElementById('company-tax').innerText = docData.companyTax || '';
-
-                // Set Doc Details
-                document.getElementById('doc-number').innerText = docData.id || '';
-                document.getElementById('doc-date').innerText = docData.docDate || '';
-                document.getElementById('doc-job').innerText = docData.docJob || '';
-
-                // Set Client details
-                document.getElementById('client-name').innerText = docData.clientName || '';
-                document.getElementById('client-address').innerText = docData.clientAddress || '';
-                document.getElementById('client-tax-id').innerText = docData.clientTaxId || '';
-
-                // Populate Items
-                const tbody = document.getElementById('invoice-items-body');
-                tbody.innerHTML = '';
-                rowCounter = 0;
-
-                if (docData.items && docData.items.length > 0) {
-                    docData.items.forEach((item, idx) => {
-                        rowCounter++;
-                        const tr = document.createElement('tr');
-                        tr.className = "hover:bg-slate-50/50";
-                        tr.innerHTML = `
-                            <td class="py-1.5 px-2 text-center text-slate-500 border border-slate-200">${idx + 1}</td>
-                            <td class="py-1.5 px-2 font-medium text-slate-800 border border-slate-200" contenteditable="true" onblur="recalculateAll()">${item.desc}</td>
-                            <td class="py-1.5 px-2 text-center font-semibold text-slate-700 border border-slate-200" contenteditable="true" oninput="validateNumberInput(this); recalculateAll()" id="qty-${rowCounter}">${item.qty}</td>
-                            <td class="py-1.5 px-2 text-right font-semibold text-slate-700 border border-slate-200" contenteditable="true" oninput="validateNumberInput(this); recalculateAll()" id="price-${rowCounter}">${item.price}</td>
-                            <td class="py-1.5 px-2 text-right font-bold text-slate-900 border border-slate-200" id="total-${rowCounter}">0.00</td>
-                            <td class="py-1.5 px-1 text-center no-print border border-slate-200">
-                                <button onclick="deleteRow(this)" class="text-slate-400 hover:text-rose-600 transition" title="ลบรายการนี้"><i class="fa-solid fa-trash"></i></button>
-                            </td>`;
-                        tbody.appendChild(tr);
-                    });
-                } else {
-                    addNewRow();
-                }
-
-                recalculateAll();
-                showToast(`ดึงข้อมูลเอกสาร ${docData.id} มาปรับปรุงแล้ว`, "success");
-            } catch (err) {
-                console.error("Error loading document:", err);
-                showToast("ไม่สามารถโหลดเอกสารนี้ได้", "error");
-            }
-        };
-
-        // Delete Document History
-        window.deleteDocFromHistory = async function(docId) {
-            if (!confirm(`คุณต้องการลบประวัติเอกสารเลขที่ ${docId} หรือไม่?`)) return;
-
-            showToast("กำลังลบเอกสาร...", "info");
-
-            if (firebaseReady && user) {
-                try {
-                    const docRef = doc(db, 'artifacts', appId, 'users', user.uid, 'documents', docId);
-                    await deleteDoc(docRef);
-                    showToast("ลบเอกสารสำเร็จ!", "success");
-                    loadHistory();
-                } catch (error) {
-                    console.error("Firestore delete failed:", error);
-                    deleteFromLocalFallback(docId);
-                }
-            } else {
-                deleteFromLocalFallback(docId);
-            }
-        };
-
-        function deleteFromLocalFallback(docId) {
-            localBackupDatabase = localBackupDatabase.filter(d => d.id !== docId);
-            sessionStorage.setItem('js_docs_backup', JSON.stringify(localBackupDatabase));
-            showToast("ลบเอกสารสำเร็จ (โหมดออฟไลน์)!", "success");
-            loadHistory();
-        }
-
-        // Custom notification toaster helper (Instead of alerts)
-        function showToast(message, type = "info") {
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            toast.className = `p-3 rounded-lg shadow-lg text-xs font-semibold text-white flex items-center gap-2 transition-all duration-300 transform translate-y-2 opacity-0`;
-            
-            if (type === "success") {
-                toast.className += " bg-emerald-500";
-                toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> ${message}`;
-            } else if (type === "error") {
-                toast.className += " bg-rose-500";
-                toast.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ${message}`;
-            } else {
-                toast.className += " bg-slate-800";
-                toast.innerHTML = `<i class="fa-solid fa-circle-info"></i> ${message}`;
-            }
-
-            container.appendChild(toast);
-            
-            // Trigger animation
-            setTimeout(() => {
-                toast.classList.remove('translate-y-2', 'opacity-0');
-            }, 10);
-
-            // Dismiss toast
-            setTimeout(() => {
-                toast.classList.add('translate-y-2', 'opacity-0');
-                setTimeout(() => {
-                    toast.remove();
-                }, 300);
-            }, 3000);
-        }
-
-        // Run
-        initFirebase();
-    </script>
-
     <!-- App JavaScript Logic -->
     <script>
         // Track states
@@ -873,8 +502,8 @@
             newRow.innerHTML = `
                 <td class="py-1.5 px-2 text-center text-slate-500 border border-slate-200">${tbody.rows.length + 1}</td>
                 <td class="py-1.5 px-2 font-medium text-slate-800 border border-slate-200" contenteditable="true" onblur="recalculateAll()">รายละเอียดบริการ/สินค้าชุดใหม่</td>
-                <td class="py-1.5 px-2 text-center font-semibold text-slate-700 border border-slate-200" contenteditable="true" oninput="validateNumberInput(this); recalculateAll()" id="qty-${rowCounter}">1</td>
-                <td class="py-1.5 px-2 text-right font-semibold text-slate-700 border border-slate-200" contenteditable="true" oninput="validateNumberInput(this); recalculateAll()" id="price-${rowCounter}">0.00</td>
+                <td class="py-1.5 px-2 text-center font-semibold text-slate-750 border border-slate-200" contenteditable="true" oninput="validateNumberInput(this); recalculateAll()" id="qty-${rowCounter}">1</td>
+                <td class="py-1.5 px-2 text-right font-semibold text-slate-750 border border-slate-200" contenteditable="true" oninput="validateNumberInput(this); recalculateAll()" id="price-${rowCounter}">0.00</td>
                 <td class="py-1.5 px-2 text-right font-bold text-slate-900 border border-slate-200" id="total-${rowCounter}">0.00</td>
                 <td class="py-1.5 px-1 text-center no-print border border-slate-200">
                     <button onclick="deleteRow(this)" class="text-slate-400 hover:text-rose-600 transition" title="ลบรายการนี้"><i class="fa-solid fa-trash"></i></button>
